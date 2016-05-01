@@ -14,7 +14,7 @@ def getSpeed(url, test_time=3) :
   else:
     for chunk in r.iter_content(1024):
       dl += len(chunk)
-      done = int(50 * dl / int(total_length))
+      done = int(50 * time.clock() - start / int(test_time))
       sys.stdout.write("\r[%s%s] %s second" % ('=' * done, ' ' * (50-done), dl//(time.clock() - start)))
       if time.clock() - start >= test_time:
         print " speed is "
