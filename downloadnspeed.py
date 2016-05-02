@@ -17,7 +17,6 @@ def getSpeed(url, test_time=3) :
       done = int(50 * time.clock() - start / int(test_time))
       sys.stdout.write("\r[%s%s] %s second" % ('=' * done, ' ' * (50-done), dl//(time.clock() - start)))
       if time.clock() - start >= test_time:
-        print " speed is "
         #bps to kbps
         return (dl//(time.clock() - start))/1000000
   
@@ -68,16 +67,12 @@ def test_servers_speed():
   #close the pool and wait for the work to finish 
   pool.close() 
   pool.join() 
-  print ("Speed Results: ")
+  print ("\n Speed Results: ")
   svr = 1
   for i in results:
-    print ("Server %s  speed : %s mbps" %(svr, i))
+    sys.stdout.write("\r\n Server %s  speed : %s mbps" % (svr, i))
     svr+=1
-
-  print results
-
-
-  
+  sys.stdout.write("\r\n ----------------------------------------- Speed Test Completed ------------------------------------ \r\n" )
 
 def main() :
   if len(sys.argv) > 1 :
@@ -94,7 +89,7 @@ def main() :
         #show progress
   test_servers_speed()
   #time_elapsed = downloadFile(url, directory)
-  print "Download complete..."
+  #print "Download complete..."
   #print "Time Elapsed: " + str(time_elapsed)
 
 
